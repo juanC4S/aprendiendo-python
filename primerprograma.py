@@ -15,4 +15,5 @@ nros3 = int(input("introduce tu 3er nro: "))
 maxi=max(nros1, nros2, nros3)
 
 print("el mnro mayor es: " ,maxi)
+#aui comentando esta mrda
 
