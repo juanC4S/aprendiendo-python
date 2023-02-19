@@ -13,7 +13,9 @@ nros2 = int(input("introduce tu 2do nro: "))
 nros3 = int(input("introduce tu 3er nro: "))
 
 maxi=max(nros1, nros2, nros3)
+mini=min(nros1,nros2,nros3)
 #pribando el escribir de nuevo
 print("el mnro mayor es: " ,maxi)
+print("el mnro menor es: " ,maxi)
 #aui comentando esta mrda
 #otro comentario de prueba git ctmr xd
