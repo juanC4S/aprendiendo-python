@@ -16,6 +16,6 @@ maxi=max(nros1, nros2, nros3)
 mini=min(nros1,nros2,nros3)
 #pribando el escribir de nuevo
 print("el mnro mayor es: " ,maxi)
-print("el mnro menor es: " ,maxi)
+print("el mnro menor es: " ,mini)
 #aui comentando esta mrda
 #otro comentario de prueba git ctmr xd
