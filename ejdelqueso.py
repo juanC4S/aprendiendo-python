@@ -16,6 +16,10 @@ elif opcion =="B" or opcion =="b":
     puntuacion +=15
 elif opcion =="C" or opcion =="c":
     puntuacion +=20
+elif opcion != "A" or opcion !="a" or opcion !="B" or opcion !="b" or opcion !="C" or opcion !="c":
+    print("ERROR : SOLO ES PERMITIDO A, B Y C")
+    print("Saliendo del programa")
+    quit()
 
 
 print("PREGUNTA 2: ¿Como te gusta la hamburguesa?")
@@ -30,7 +34,10 @@ elif opcion =="B" or opcion =="b":
     puntuacion +=15
 elif opcion =="C" or opcion =="c":
     puntuacion +=20
-
+elif opcion != "A" or opcion !="a" or opcion !="B" or opcion !="b" or opcion !="C" or opcion !="c":
+    print("ERROR : SOLO ES PERMITIDO A, B Y C")
+    print("Saliendo del programa")
+    quit()
 
 
 
@@ -47,7 +54,10 @@ elif opcion =="B" or opcion =="b":
     puntuacion +=15
 elif opcion =="C" or opcion =="c":
     puntuacion +=20
-
+elif opcion != "A" or opcion !="a" or opcion !="B" or opcion !="b" or opcion !="C" or opcion !="c":
+    print("ERROR : SOLO ES PERMITIDO A, B Y C")
+    print("Saliendo del programa")
+    quit()
 
 if puntuacion >= 25:
     print("su puntaje es: (",puntuacion ,") A ud. le encanta y eres cpp del queso xd")
