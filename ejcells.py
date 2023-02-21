@@ -1,18 +1,7 @@
-#esto es el tipo de cambio a esta fecha 20/02/2023
-penusd = 3.85
-
-peneur = 4.11
-
 print("ios o android? XD")
-
-
-
 print("1 - Android")
 print("2 - IOS")
-
-
 opc = input("SELECIIONE SU PREFERIDO: ")
-
 if opc =="1" or opc =="2":
 
     if opc == "1":
@@ -28,9 +17,7 @@ if opc =="1" or opc =="2":
                     print("android calidad precio")
             elif newopc == "N" or newopc=="n":
                 print ("android chino 100 usd")
-        
-        
-        
+             
     if opc =="2":
         print ("IOS")
         newopc=input("Tienes dinero? (S/N): ")
