@@ -1,4 +1,4 @@
-text="Hola, me llamo Juan Carlos. ¿Tu como te llamas?"
+text=input("Introduzca un texto: ")
 signos=[" ", ".", ","]
 canti=0
 contespa=0
