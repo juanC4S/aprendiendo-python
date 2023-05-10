@@ -1,0 +1,240 @@
+import os
+import random
+import readchar
+
+pos_x = 0
+pos_y = 1
+
+num_of_map_objects = 4
+
+obstacle_definition = """\
+##########################
+########          ########
+########          ########
+########          ########
+########          ########
+#                        #
+#                        #
+#                        #
+#                        #
+#                        #
+#########         ########
+#########         ########
+#########         ########
+#########         ########
+##########################\
+"""
+
+my_position = [13, 1]
+# tail_lengt = 0
+tail = []
+map_objects = []
+generated_objects = 0  # contador de objetos generados al inicio
+
+#create obstacle map
+obstacle_definition = [list(row) for row in obstacle_definition.split("\n")]
+
+map_width = len(obstacle_definition[0])
+map_height = len(obstacle_definition)
+
+# generar objetos aleatorios
+while generated_objects < num_of_map_objects:
+    new_position = [random.randint(0, map_width - 1), random.randint(0, map_height - 1)]
+    if new_position not in map_objects and new_position != my_position and obstacle_definition[new_position[pos_y]][new_position[pos_x]] != "#":
+        map_objects.append(new_position)
+        generated_objects += 1
+
+end_game = False
+died = False
+#main lopp
+while not end_game:
+    os.system("cls")
+    #generate random objects on the map
+    # while len(map_objects) < num_of_map_objects:
+    #     new_position = [random.randint(0, map_width - 1), random.randint(0, map_height - 1)]
+    #     if new_position not in map_objects and new_position != my_position and obstacle_definition[new_position[pos_y]][new_position[pos_x]] != "#" and \
+    #     (not any(obj[pos_x] == new_position[pos_x] and obj[pos_y] == new_position[pos_y] for obj in tail)) and \
+    #     (not any(obj[pos_x] == new_position[pos_x] and obj[pos_y] == new_position[pos_y] for obj in map_objects[:4] if obj)):
+    #         map_objects.append(new_position)
+    # Draw Map
+    print("+" + "-" * map_width *2 + "+")
+    for coordinate_y in range(map_height):
+        print("|", end="")
+        for coordinate_x in range(map_width):
+            char_to_draw = "  "
+            object_in_cell = None
+            tail_in_cell = None
+            duelo1= False
+            for map_object in map_objects:
+                if map_object[pos_x] == coordinate_x and map_object[pos_y] == coordinate_y:
+                    char_to_draw = " *"
+                    object_in_cell = map_object
+            # for tail_piece in tail:
+            #     if tail_piece[pos_x] == coordinate_x and tail_piece[pos_y] == coordinate_y:
+            #         char_to_draw = " @"
+            #         tail_in_cell = tail_piece
+            if my_position[pos_x] == coordinate_x and my_position[pos_y] == coordinate_y:
+                char_to_draw = " @"
+
+                if object_in_cell == map_objects[0]:
+                    # os.system("cls")
+                    # map_objects.remove(object_in_cell)
+                    # tail_lengt += 1
+                    print ("pelea de invalidos: encontraste un raichu xd")
+                    ##zona de duelos
+                    
+                    aeawan =input("Deseas enfrentare a raichu? q/n: ")
+                    if aeawan =="q" and aeawan =="Q":
+                        duelo1 = True
+                        if duelo1:
+                            print ("laptmre funcionas si o no?")
+                            cpu = random.randint(1 ,3)
+                            atk= 0
+                            print("Tu pokemon es pikachu y tu oponente es raichu \n")
+                            lifepikachu=100
+                            liferaichu=100
+                            while lifepikachu > 0 and liferaichu > 0:
+                                opcion = input("Pikachu usa: \n"
+                                    "1 - Impactrueno \n"
+                                    "1 - Gruñido Growl \n"
+                                    "1 - Ataque Rápido \n"        
+                                            )
+                                if opcion == "1" :             
+                                    print ("PIKACHU usa Impactrueno contra Raichu\n")
+                                    atk = 15
+                                    liferaichu -=atk
+                            
+                    
+                                elif opcion == "2":
+                                    print ("PIKACHU usa Gruñido Growl contra Raichu\n")
+                                    atk = 18
+                                    liferaichu -=atk
+                    
+                                elif opcion == "3":
+                                    print ("PIKACHU usa Ataque Rápido contra Raichu\n")
+                                    atk = 23
+                                    liferaichu -=atk
+                                if opcion=="n" or "N":
+                                    print ("PIKACHU A DECIDIDO NO ATACAR \n")
+                        
+                
+                                if lifepikachu<0:
+                                    lifepikachu=0
+                                if liferaichu<0:
+                                    liferaichu=0
+                
+                                barraPikachu=lifepikachu/10
+                                lifepokemonP = int(barraPikachu % 10) * "-"
+                                barraRaichu = liferaichu/10
+                                lifepokemonR= int(barraRaichu %10)* "-"
+                                if lifepikachu >=100:
+                                    aea = 10 *"-"
+                                    print ("vida de pikachu es:  " ,lifepikachu ,"/100" ,aea)
+                                else:
+                                    print ("vida de pikachu es:  " ,lifepikachu,"/100",lifepokemonP)
+                    
+                                if liferaichu >=100:
+                                    print ("vida de Raichu es: " ,liferaichu,"/100" ,aea ,"\n")
+                                else:    
+                                    print ("vida de Raichu es: " ,liferaichu,"/100" ,lifepokemonR,"\n")
+
+                                # os.system("cls")
+
+                                print ("Turno de Raichu (CPU) vs Pikachu \n")
+                                print("Los ataques Raichu (CPU) son: \n"
+                                    "1 - Electricidad estática   Daño  = 17 \n"
+                                    "2 - Pararrayos              Daño  = 19 \n"
+                                    "3 - Bolatrueno              Daño  = 21 \n"
+                                    )        
+
+                                if cpu == 1:     
+                                    print ("Raichu (CPU) usa Electricidad estática contra pikachu\n")
+                                    atk = 17
+                                    lifepikachu -=atk
+                        
+                                elif cpu == 2:   
+                                    print ("Raichu (CPU) usa Pararrayos contra pikachu\n")
+                                    atk = 19
+                                    lifepikachu -=atk
+                        
+                                elif cpu == 3:               
+                                    print ("Raichu (CPU) usa Bolatrueno contra pikachu\n")
+                                    atk = 21
+                                    lifepikachu -=atk 
+                
+                        
+                                if lifepikachu<0:
+                                    lifepikachu=0
+                                if liferaichu<0:
+                                    liferaichu=0
+
+                                barraPikachu=lifepikachu/10
+                                lifepokemonP = int(barraPikachu % 10) * "-"
+                                barraRaichu = liferaichu/10
+                                lifepokemonR = int(liferaichu %10)* "-"
+
+                                if lifepikachu >=100:
+                                    aea = 10 *"-"
+                                    print ("vida de pikachu es:  " ,lifepikachu,"/100" ,aea)
+                                else:
+                                    print ("vida de pikachu es:  " ,lifepikachu,"/100" ,lifepokemonP)
+                
+                                
+                                if liferaichu >=100:
+                                    print ("vida de Raichu es: " ,liferaichu,"/100" ,aea ,"\n")
+                                else:    
+                                    print ("vida de Raichu es: " ,liferaichu,"/100" ,lifepokemonR,"\n")
+
+                            if lifepikachu > liferaichu:
+                                print ("Raichu [NO PUEDE SEGUIR]")
+                                print ("el ganador es Pikachu")
+                                map_objects.remove(object_in_cell)
+                            else:
+                                print("Pikachu [NO PUEDE SEGUIR]")
+                                print ("el ganador es Raichu")
+                                
+                            #tail_lengt += 1
+                    else:
+                        pass
+                if tail_in_cell:
+                    end_game = True
+                    died = True
+            if coordinate_y < len(obstacle_definition) and coordinate_x < len(obstacle_definition[coordinate_y]) and obstacle_definition[coordinate_y][coordinate_x] == "#":
+                char_to_draw = "##"
+            print("{}".format(char_to_draw), end="")
+        print("|")
+    print("+" + "-" * map_width * 2 + "+")
+    print (map_objects)
+    # print (map_objects[0])
+    # print (map_objects[1])
+    # print (map_objects[2])
+    # print (map_objects[3])
+
+   
+        
+    #ask user where he wants to move
+    #direction = input("¿Dónde te quieres mover? [WASD]:")
+    direction = readchar.readkey()
+
+    new_position = None
+
+    if direction == "w":
+        new_position = [my_position[pos_x], (my_position[pos_y] - 1)]
+    elif direction == "s":
+        new_position = [my_position[pos_x], (my_position[pos_y] + 1)]
+    elif direction == "a":
+        new_position = [my_position[pos_x] - 1, my_position[pos_y]]
+    elif direction == "d":
+        new_position = [my_position[pos_x] + 1, my_position[pos_y]]
+    elif direction == "q":
+        end_game = True
+    if new_position:
+        if obstacle_definition[new_position[pos_y]][new_position[pos_x]] != "#":
+            # tail.insert(0, my_position.copy())
+            # tail = tail[:tail_lengt]
+            my_position = new_position
+    
+    
+           
+if died:
+    print("Has muerto!")
