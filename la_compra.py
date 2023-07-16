@@ -1,25 +1,39 @@
 
 SALIDA= "SALIR"
-items_del_super = ["pollo", "maiz", "lechuga", "pan"]
+ARCHIVO_LISTA = "compra.txt"
 def preguntar_producto_usuario():
-    item_elegido=input("Introduce un producto [{} para salir]".format(SALIDA))
-    while item_elegido.lower() not in items_del_super and item_elegido != SALIDA:
-        print("El item que has escrito nmo esta en el supermercado")
-        item_elegido=input("Introduce un producto [{} para salir]".format(SALIDA))
-    return item_elegido
+    return input("Introduce un producto [{} para salir]".format(SALIDA))
+   
 def guardar_lista_a_disco(lista_compra):
-    nombreFichero= input ("Como quieres que se llame el archivo? ")
-    with open(nombreFichero+ ".txt", "w") as mi_archivo:
+    with open(ARCHIVO_LISTA, "w") as mi_archivo:
         mi_archivo.write("\n".join(lista_compra))
-def main():
+def guardar_item_en_lista(lista_compra, item_a_guardar):
+    
+    if item_a_guardar.lower() in [a.lower() for a in lista_compra]:
+        print ("El producto ya existe!")
+    else:
+        lista_compra.append(item_a_guardar)
+
+def cargar_archivo():
     lista_compra = []
-    
+    if input("Quieres cargar la última lista de la compra? [S/N]") == "S": 
+        try:
+            with open(ARCHIVO_LISTA, "r") as a:
+                lista_compra = a.read().split("\n")
+        except FileNotFoundError:
+            print("¡Archivo de la compra no encontrado!")
+    return lista_compra
+def mostrar_lista(lista_compra):
+    print("\n".join(lista_compra))
+
+def main():
+    lista_compra = cargar_archivo()
+    mostrar_lista(lista_compra)
     input_usuario = preguntar_producto_usuario()
-    while input_usuario != SALIDA:
-        lista_compra.append(input_usuario)
-        print("\n".join(lista_compra))
+    while input_usuario != SALIDA: 
+        guardar_item_en_lista(lista_compra, input_usuario)
         input_usuario = preguntar_producto_usuario()
-    
+    mostrar_lista(lista_compra)
     guardar_lista_a_disco(lista_compra)
 if __name__ == "__main__":
     main()
